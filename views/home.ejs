@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/style/homeStyle.css" />
+  </head>
+  <body>
+    <div id="contacts-container">
+      <% contacts.forEach((contact)=>{%>
+      <div class="contact-container">
+        <h2><%=contact.name%></h2>
+        <%if(contact.email){%>
+        <p><%=contact.email%></p>
+        <%}%>
+        <h2><%=contact.phone%></h2>
+      </div>
+      <%})%>
+    </div>
+  </body>
+</html>

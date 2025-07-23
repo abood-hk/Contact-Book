@@ -1,0 +1,54 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f4f6f8;
+  padding: 2rem;
+  color: #333;
+}
+
+/* Container that holds all contacts */
+#contacts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Individual contact card */
+.contact-container {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Contact name */
+.contact-container h2 {
+  font-size: 1.2rem;
+  color: #1e88e5;
+  margin-bottom: 0.5rem;
+}
+
+/* Email and phone */
+.contact-container p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.contact-container h2:last-of-type {
+  font-size: 1rem;
+  color: #444;
+}
