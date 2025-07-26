@@ -3,7 +3,7 @@ export interface IContact extends Document {
   name: string;
   phone: string;
   email?: string;
-  address?: string;
+  adress?: string;
   notes?: string;
   createdAt: Date;
   updatedAt: Date;
@@ -27,8 +27,10 @@ const contactSchema = new Schema<IContact>(
       type: String,
       trim: true,
       lowercase: true,
+      unique: false,
+      sparse: true,
     },
-    address: {
+    adress: {
       type: String,
       trim: true,
     },

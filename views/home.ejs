@@ -7,6 +7,52 @@
     <link rel="stylesheet" href="../public/style/homeStyle.css" />
   </head>
   <body>
+    <div id="overlay"></div>
+    <div id="search-add">
+      <input placeholder="Search for a contact" type="text" />
+      <button id="add-button" type="button">Add</button>
+    </div>
+    <form id="add-form">
+      <label for="name">Name:</label>
+      <input
+        placeholder="e.g. Khaled"
+        required
+        id="name"
+        name="name"
+        type="text"
+      />
+      <label for="phone">Phone number:</label>
+      <input
+        placeholder="e.g. 0512344567"
+        required
+        id="phone"
+        name="phone"
+        type="number"
+      />
+      <label for="email">Email adress:</label>
+      <input
+        placeholder="example@example.com"
+        id="email"
+        name="email"
+        type="email"
+      />
+      <label for="adress">Adress:</label>
+      <input
+        placeholder="e.g. Riyadh First Street"
+        id="adress"
+        name="adress"
+        type="text"
+      />
+      <label for="note">Note:</label>
+      <textarea
+        placeholder="I meet him at the park..."
+        cols="20"
+        rows="6"
+        name="notes"
+        id="notes"
+      ></textarea>
+      <button id="formBtn">Add contact</button>
+    </form>
     <div id="contacts-container">
       <% contacts.forEach((contact)=>{%>
       <div class="contact-container">
@@ -18,5 +64,7 @@
       </div>
       <%})%>
     </div>
+    <script src="../public/script/homeDOM.js"></script>
+    <script src="../public/script/homeRequests.js"></script>
   </body>
 </html>
