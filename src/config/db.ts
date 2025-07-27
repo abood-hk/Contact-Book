@@ -10,5 +10,5 @@ if (!MONGO_URI) {
 
 mongoose
   .connect(MONGO_URI)
-  .then(() => console.log('mongodb is connected'))
+  .then(() => console.log('Mongodb is connected'))
   .catch((err) => console.log('Failed to connect mongodb: ' + err.message));

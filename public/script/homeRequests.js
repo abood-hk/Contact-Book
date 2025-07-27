@@ -25,7 +25,7 @@ addForm.addEventListener('submit', (e) => {
       return responce.text();
     })
     .then((data) => {
-      window.location.href = '/';
+      window.location.href = '/public';
     })
     .catch((err) => {
       console.log('error : ' + err.message);

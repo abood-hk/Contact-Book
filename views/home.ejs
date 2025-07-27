@@ -3,7 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Contact Book</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../public/style/homeStyle.css" />
   </head>
   <body>
@@ -43,9 +49,9 @@
         name="adress"
         type="text"
       />
-      <label for="note">Note:</label>
+      <label for="notes">Note:</label>
       <textarea
-        placeholder="I meet him at the park..."
+        placeholder="I met him at the park..."
         cols="20"
         rows="6"
         name="notes"
@@ -57,10 +63,18 @@
       <% contacts.forEach((contact)=>{%>
       <div class="contact-container">
         <h2><%=contact.name%></h2>
-        <%if(contact.email){%>
-        <p><%=contact.email%></p>
-        <%}%>
+        <p><%=contact.email?contact.email:'—'%></p>
         <h2><%=contact.phone%></h2>
+        <button type="button" class="infoBtn">Show more</button>
+        <button type="button" class="deleteBtn">Delete</button>
+      </div>
+      <div class="more-info">
+        <h2>Contact's info</h2>
+        <h3>Name : <%=contact.name%></h3>
+        <h3>Phone number : <%=contact.phone%></h3>
+        <h3>Email adress: <%=contact.email?contact.email:'—'%></h3>
+        <h3>Adress : <%=contact.adress?contact.adress:'—'%></h3>
+        <h3>Note : <%=contact.notes?contact.notes:'—'%></h3>
       </div>
       <%})%>
     </div>
