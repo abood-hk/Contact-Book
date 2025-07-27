@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import contactModel, { IContact } from '../models/Contact';
+import mongoose from 'mongoose';
 
 interface InewContact {
   name: string;
@@ -46,4 +47,10 @@ export const addContact = async (req: Request, res: Response) => {
       console.log('Something went wrong');
     }
   }
+};
+
+export const deleteContact = async (req: Request, res: Response) => {
+  const id = mongoose.Types.ObjectId.createFromHexString(req.body.id);
+  await contactModel.deleteOne({ _id: id });
+  getAllContacts(req, res);
 };
