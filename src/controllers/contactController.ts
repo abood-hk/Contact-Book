@@ -36,7 +36,10 @@ export const addContact = async (req: Request, res: Response) => {
       adress: req.body.adress,
       notes: req.body.notes,
     };
-    await contactModel.create(contactEntry);
+    const newContact = await contactModel.create(contactEntry);
+    if (req.headers.accept?.includes('application/json')) {
+      return res.status(201).json(newContact);
+    }
     getAllContacts(req, res);
   } catch (err) {
     if (err instanceof Error) {
@@ -52,5 +55,31 @@ export const addContact = async (req: Request, res: Response) => {
 export const deleteContact = async (req: Request, res: Response) => {
   const id = mongoose.Types.ObjectId.createFromHexString(req.body.id);
   await contactModel.deleteOne({ _id: id });
-  getAllContacts(req, res);
+  res.status(200).json(req.body.id);
+};
+
+export const searchContact = async (req: Request, res: Response) => {
+  function escapeRegex(input: string): string {
+    return input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+  const rawName = Array.isArray(req.query.name)
+    ? (req.query.name[0] as string)
+    : (req.query.name as string) || '';
+  const name = escapeRegex(rawName);
+  const filteredContacts = await contactModel.find({
+    name: { $regex: new RegExp(name, 'i') },
+  });
+  res.status(200).json(filteredContacts || '');
+};
+
+export const modifyContact = async (req: Request, res: Response) => {
+  const id = mongoose.Types.ObjectId.createFromHexString(req.body.id);
+  const oldContact = await contactModel.findOne({ _id: id });
+  const { name, phone, email, adress, notes } = req.body || oldContact || '';
+  await contactModel.updateOne(
+    { _id: id },
+    { name, phone, email, adress, notes }
+  );
+  const newContact = await contactModel.findOne({ _id: id });
+  res.status(200).json(newContact);
 };

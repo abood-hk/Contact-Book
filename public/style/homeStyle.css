@@ -156,7 +156,7 @@ form label:has(+ textarea[required])::after {
 }
 
 /* Individual contact card */
-.contact-container {
+.contact-card {
   background-color: #ffffff;
   border: 1px solid #ddd;
   border-radius: 12px;
@@ -168,26 +168,26 @@ form label:has(+ textarea[required])::after {
   overflow: auto;
 }
 
-.contact-container:hover {
+.contact-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 /* Contact name */
-.contact-container h2 {
+.contact-card h2 {
   font-size: 1.2rem;
   color: #1e88e5;
   margin-bottom: 0.5rem;
 }
 
 /* Email and phone */
-.contact-container p {
+.contact-card p {
   font-size: 0.95rem;
   color: #555;
   margin-bottom: 0.5rem;
 }
 
-.contact-container h2:last-of-type {
+.contact-card h2:last-of-type {
   font-size: 1rem;
   color: #444;
 }
@@ -208,6 +208,23 @@ form label:has(+ textarea[required])::after {
   background-color: #0056b3;
 }
 
+.modify-btn {
+  display: block;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 2rem;
+  margin: 1.5rem auto 0 auto;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 1.05rem;
+}
+
+.modify-btn:hover {
+  background-color: #0056b3;
+}
 /* Delete button - Red */
 .deleteBtn {
   background-color: #dc3545;

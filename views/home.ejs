@@ -15,7 +15,7 @@
   <body>
     <div id="overlay"></div>
     <div id="search-add">
-      <input placeholder="Search for a contact" type="text" />
+      <input id="search-bar" placeholder="Search for a contact" type="text" />
       <button id="add-button" type="button">Add</button>
     </div>
     <form id="add-form">
@@ -62,25 +62,28 @@
     <div id="contacts-container">
       <% contacts.forEach((contact)=>{%>
       <div class="contact-container">
-        <h2><%=contact.name%></h2>
-        <p><%=contact.email?contact.email:'—'%></p>
-        <h2><%=contact.phone%></h2>
-        <button type="button" class="infoBtn">Show more</button>
-        <button type="button" data-id="<%=contact._id%>" class="deleteBtn">
-          Delete
-        </button>
-      </div>
-      <div class="more-info">
-        <h2>Contact's info</h2>
-        <h3>Name : <%=contact.name%></h3>
-        <h3>Phone number : <%=contact.phone%></h3>
-        <h3>Email adress: <%=contact.email?contact.email:'—'%></h3>
-        <h3>Adress : <%=contact.adress?contact.adress:'—'%></h3>
-        <h3>Note : <%=contact.notes?contact.notes:'—'%></h3>
+        <div class="contact-card">
+          <h2><%=contact.name%></h2>
+          <p><%=contact.email?contact.email:'—'%></p>
+          <h2><%=contact.phone%></h2>
+          <button type="button" class="infoBtn">Show more</button>
+          <button type="button" data-id="<%=contact._id%>" class="deleteBtn">
+            Delete
+          </button>
+        </div>
+        <div class="more-info">
+          <h2>Contact's info</h2>
+          <h3>Name : <%=contact.name%></h3>
+          <h3>Phone number : <%=contact.phone%></h3>
+          <h3>Email adress: <%=contact.email?contact.email:'—'%></h3>
+          <h3>Adress : <%=contact.adress?contact.adress:'—'%></h3>
+          <h3>Note : <%=contact.notes?contact.notes:'—'%></h3>
+          <button type="button" class="modify-btn">Modify</button>
+        </div>
       </div>
       <%})%>
     </div>
-    <script src="../public/script/homeDOM.js"></script>
-    <script src="../public/script/homeRequests.js"></script>
+    <script type="module" src="../public/script/homeDOM.js"></script>
+    <script type="module" src="../public/script/homeRequests.js"></script>
   </body>
 </html>
