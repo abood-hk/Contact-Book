@@ -14,13 +14,13 @@ const contactSchema = new Schema<IContact>(
       type: String,
       trim: true,
       required: true,
-      minlength: 3,
     },
     phone: {
       type: String,
       trim: true,
       required: true,
       minlength: 10,
+      maxlength: 10,
       unique: true,
     },
     email: {

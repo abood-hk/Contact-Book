@@ -54,6 +54,8 @@ export const addContact = async (req: Request, res: Response) => {
 
 export const deleteContact = async (req: Request, res: Response) => {
   const id = mongoose.Types.ObjectId.createFromHexString(req.body.id);
+  const user = await contactModel.findById(id);
+  if (!user) return res.status(400).json('No user with this id');
   await contactModel.deleteOne({ _id: id });
   res.status(200).json(req.body.id);
 };
@@ -74,12 +76,21 @@ export const searchContact = async (req: Request, res: Response) => {
 
 export const modifyContact = async (req: Request, res: Response) => {
   const id = mongoose.Types.ObjectId.createFromHexString(req.body.id);
-  const oldContact = await contactModel.findOne({ _id: id });
-  const { name, phone, email, adress, notes } = req.body || oldContact || '';
+  const user = await contactModel.findById(id);
+  if (!user) return res.status(400).json('No user with this id');
+  const {
+    name = '',
+    phone = '',
+    email = '',
+    adress = '',
+    notes = '',
+  } = req.body || '';
   await contactModel.updateOne(
     { _id: id },
-    { name, phone, email, adress, notes }
+    { $set: { name, phone, email, adress, notes } }
   );
+  const newUser = await contactModel.findById(id);
+  if (!newUser) return res.status(400).json('No user with this id');
   const newContact = await contactModel.findOne({ _id: id });
   res.status(200).json(newContact);
 };

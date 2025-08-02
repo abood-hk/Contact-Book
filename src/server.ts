@@ -6,6 +6,7 @@ import path from 'path';
 import logger from './middleware/loggerMiddleware';
 import publicRouter from './routes/publicRoutes';
 import helmet from 'helmet';
+import errorHandler from './middleware/errorMiddlware';
 
 dotenv.config();
 
@@ -26,5 +27,6 @@ app.set('views', path.join(__dirname, '..', 'views'));
 app.use(logger);
 app.use('/api', contactRouter);
 app.use('/public', publicRouter);
+app.use(errorHandler);
 
 app.listen(PORT, () => console.log('Server is running'));

@@ -19,6 +19,7 @@
       <button id="add-button" type="button">Add</button>
     </div>
     <form id="add-form">
+      <div id="errorsContainer"></div>
       <label for="name">Name:</label>
       <input
         placeholder="e.g. Khaled"
@@ -57,7 +58,10 @@
         name="notes"
         id="notes"
       ></textarea>
-      <button id="formBtn">Add contact</button>
+      <div class="form-buttons">
+        <button type="button" id="formBtn">Add contact</button>
+        <button type="button" id="cancelBtn">Cancel</button>
+      </div>
     </form>
     <div id="contacts-container">
       <% contacts.forEach((contact)=>{%>
@@ -65,7 +69,9 @@
         <div class="contact-card">
           <h2><%=contact.name%></h2>
           <p><%=contact.email?contact.email:'—'%></p>
-          <h2><%=contact.phone%></h2>
+          <h2>
+            <%=contact.phone.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3')%>
+          </h2>
           <button type="button" class="infoBtn">Show more</button>
           <button type="button" data-id="<%=contact._id%>" class="deleteBtn">
             Delete
@@ -73,12 +79,23 @@
         </div>
         <div class="more-info">
           <h2>Contact's info</h2>
-          <h3>Name : <%=contact.name%></h3>
-          <h3>Phone number : <%=contact.phone%></h3>
-          <h3>Email adress: <%=contact.email?contact.email:'—'%></h3>
-          <h3>Adress : <%=contact.adress?contact.adress:'—'%></h3>
-          <h3>Note : <%=contact.notes?contact.notes:'—'%></h3>
-          <button type="button" class="modify-btn">Modify</button>
+          <h3 class="info-name">Name : <%=contact.name%></h3>
+          <h3 class="info-phone">
+            Phone number : <%=contact.phone.replace(/(\d{3})(\d{3})(\d{4})/,
+            '$1-$2-$3')%>
+          </h3>
+          <h3 class="info-email">
+            Email adress : <%=contact.email?contact.email:'—'%>
+          </h3>
+          <h3 class="info-adress">
+            Adress : <%=contact.adress?contact.adress:'—'%>
+          </h3>
+          <h3 class="info-notes">
+            Note : <%=contact.notes?contact.notes:'—'%>
+          </h3>
+          <button type="button" data-id="<%=contact._id%>" class="modifyBtn">
+            Modify
+          </button>
         </div>
       </div>
       <%})%>
