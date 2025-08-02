@@ -6,61 +6,9 @@ const overlay = document.querySelector('#overlay');
 const infoBtns = document.querySelectorAll('.infoBtn');
 const contactsContainer = document.querySelector('#contacts-container');
 const modifyBtns = document.querySelectorAll('.modifyBtn');
-const formBtn = inputForm.querySelector('#formBtn');
 const errorsContainer = inputForm.querySelector('#errorsContainer');
 
 export let formMode;
-
-formBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  const name = inputForm.querySelector('#name').value.trim();
-  const phone = inputForm.querySelector('#phone').value.trim();
-  const email = inputForm.querySelector('#email').value.trim();
-  const adress = inputForm.querySelector('#adress').value.trim();
-  const notes = inputForm.querySelector('#notes').value.trim();
-
-  const errors = [];
-
-  if (!name) {
-    errors.push('Name is required.');
-  } else if (name.length > 40) {
-    errors.push('The name is too long.');
-  }
-
-  if (!phone) {
-    errors.push('Phone number is required.');
-  } else if (!/^\d{10}$/.test(phone)) {
-    errors.push('Phone number must be 10 digits.');
-  }
-
-  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    errors.push('The email is invalid.');
-  }
-
-  if (adress && adress.length > 100) {
-    errors.push('The address is too long.');
-  }
-
-  // Notes
-  if (notes && notes.length > 250) {
-    errors.push('The note is too long.');
-  }
-
-  if (errors.length > 0) {
-    errorsContainer.innerHTML = '';
-    errors.forEach((error) => {
-      const errorContianer = document.createElement('h3');
-      errorContianer.classList.add('error');
-      errorContianer.textContent = error;
-      errorsContainer.append(errorContianer);
-    });
-  } else {
-    errorsContainer.innerHTML = '';
-    inputForm.dispatchEvent(
-      new Event('submit', { bubbles: true, cancelable: true })
-    );
-  }
-});
 
 addBtn.addEventListener('click', () => {
   formMode = 'add';
@@ -71,12 +19,6 @@ addBtn.addEventListener('click', () => {
   inputForm.reset();
   inputForm.classList.add('visible');
   overlay.classList.add('visible');
-});
-
-inputForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  inputForm.classList.remove('visible');
-  overlay.classList.remove('visible');
 });
 
 export const enableInfoBtn = (infoBtn) => {
