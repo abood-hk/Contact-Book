@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import contactModel, { IContact } from '../models/Contact';
+import contactModel from '../models/Contact';
 import mongoose from 'mongoose';
 
 interface InewContact {
@@ -10,21 +10,15 @@ interface InewContact {
   notes?: string;
 }
 
-let allContacts: IContact[];
-
-const getContacts = async () => {
+export const getAllContacts = async (req: Request, res: Response) => {
   try {
-    allContacts = await contactModel.find();
+    const allContacts = await contactModel.find();
+    res.status(200).render('home', { contacts: allContacts || [] });
   } catch (err) {
     if (err instanceof Error)
       throw new Error('Failed to get contacts from mongodb :' + err.message);
     throw Error('Unknown error');
   }
-};
-
-export const getAllContacts = async (req: Request, res: Response) => {
-  await getContacts();
-  res.status(200).render('home', { contacts: allContacts || [] });
 };
 
 export const addContact = async (req: Request, res: Response) => {
@@ -40,7 +34,6 @@ export const addContact = async (req: Request, res: Response) => {
     if (req.headers.accept?.includes('application/json')) {
       return res.status(201).json(newContact);
     }
-    getAllContacts(req, res);
   } catch (err) {
     if (err instanceof Error) {
       console.log(
